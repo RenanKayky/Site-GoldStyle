@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldStyle - Loja de Calçados, Camisas, Calças e Shorts</title>
+    <style>
+        /* Estilos CSS embutidos com detalhes dourados */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #ffd700; /* Dourado */
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid #ffd700; /* Linha dourada */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: #ffd700; /* Dourado */
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        .produto {
+            display: inline-block;
+            margin: 15px;
+            padding: 10px;
+            border: 2px solid #ffd700; /* Borda dourada */
+            background-color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            width: 200px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Sombra dourada */
+        }
+
+        .produto img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #333;
+            color: #ffd700; /* Dourado */
+            border: 2px solid #ffd700; /* Borda dourada */
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffd700; /* Dourado */
+            color: #333;
+        }
+
+        #carrinho {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #ffd700; /* Borda dourada */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Sombra dourada */
+            margin-top: 20px;
+        }
+
+        #lista-carrinho p {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: #ffd700; /* Dourado */
+            padding: 10px;
+            border-top: 2px solid #ffd700; /* Linha dourada */
+        }
+
+        .total-carrinho {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        let carrinho = [];
+
+        function adicionarAoCarrinho(nome, preco) {
+            carrinho.push({ nome, preco });
+            atualizarCarrinho();
+        }
+
+        function removerDoCarrinho(index) {
+            carrinho.splice(index, 1); // Remove o item no índice especificado
+            atualizarCarrinho(); // Atualiza a lista do carrinho após a remoção
+        }
+
+        function calcularTotal() {
+            return carrinho.reduce((total, item) => total + item.preco, 0).toFixed(2);
+        }
+
+        function atualizarCarrinho() {
+            const listaCarrinho = document.getElementById('lista-carrinho');
+            listaCarrinho.innerHTML = ''; // Limpa a lista do carrinho antes de atualizá-la
+
+            if (carrinho.length === 0) {
+                listaCarrinho.innerHTML = '<p>O carrinho está vazio.</p>';
+            } else {
+                carrinho.forEach((item, index) => {
+                    const itemElemento = document.createElement('p');
+                    itemElemento.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+                    
+                    // Criando o botão de remoção para cada item
+                    const botaoRemover = document.createElement('button');
+                    botaoRemover.textContent = 'Remover';
+                    botaoRemover.style.backgroundColor = '#ff4c4c'; // Cor de fundo vermelho para remover
+                    botaoRemover.style.color = '#fff';
+                    botaoRemover.style.marginLeft = '10px';
+                    botaoRemover.onclick = function() {
+                        removerDoCarrinho(index); // Remove o item clicado
+                    };
+
+                    itemElemento.appendChild(botaoRemover); // Adiciona o botão de remoção ao item
+                    listaCarrinho.appendChild(itemElemento); // Adiciona o item à lista
+                });
+            }
+
+            // Atualiza o valor total do carrinho
+            const totalCarrinho = document.getElementById('total-carrinho');
+            totalCarrinho.textContent = `Total: R$ ${calcularTotal()}`;
+
+            // Exibe ou oculta o botão de finalizar compra
+            const botaoFinalizar = document.getElementById('finalizar-compra');
+            if (carrinho.length > 0) {
+                botaoFinalizar.style.display = 'block';
+            } else {
+                botaoFinalizar.style.display = 'none';
+            }
+        }
+
+        function finalizarCompra() {
+            alert('Compra finalizada com sucesso!');
+            carrinho = []; // Limpa o carrinho após a compra
+            atualizarCarrinho(); // Atualiza a visualização do carrinho
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>GoldStyle</h1>
+        <nav>
+            <ul>
+                <li><a href="#calçados">Calçados</a></li>
+                <li><a href="#camisas">Camisas</a></li>
+                <li><a href="#calcas">Calças</a></li>
+                <li><a href="#shorts">Shorts</a></li>
+                <li><a href="#carrinho">Carrinho</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="calçados">
+            <h2>Calçados</h2>
+            <div class="produto" data-nome="Tênis Esportivo" data-preco="249.99">
+                <img src="tenisesportivo.avif" alt="Tênis Esportivo">
+                <h3>Tênis Esportivo</h3>
+                <p>R$ 249,99</p>
+                <button onclick="adicionarAoCarrinho('Tênis Esportivo', 249.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Sapato Casual" data-preco="199.99">
+                <img src="sapatocasual.jpeg" alt="Sapato Casual">
+                <h3>Sapato Casual</h3>
+                <p>R$ 199,99</p>
+                <button onclick="adicionarAoCarrinho('Sapato Casual', 199.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Bota Masculina" data-preco="299.99">
+                <img src="bota.webp" alt="Bota Masculina">
+                <h3>Bota Masculina</h3>
+                <p>R$ 299,99</p>
+                <button onclick="adicionarAoCarrinho('Bota Masculina', 299.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Sandália Feminina" data-preco="89.99">
+                <img src="sandaliafeminina.webp" alt="Sandália Feminina">
+                <h3>Sandália Feminina</h3>
+                <p>R$ 89,99</p>
+                <button onclick="adicionarAoCarrinho('Sandália Feminina', 89.99)">Adicionar ao carrinho</button>
+            </div>
+        </section>
+
+        <section id="camisas">
+            <h2>Camisas</h2>
+            <div class="produto" data-nome="Camiseta Básica" data-preco="59.99">
+                <img src="camisabasica.jpg" alt="Camiseta Básica">
+                <h3>Camiseta Básica</h3>
+                <p>R$ 59,99</p>
+                <button onclick="adicionarAoCarrinho('Camiseta Básica', 59.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Camisa Polo" data-preco="89.99">
+                <img src="camisapolo.webp" alt="Camisa Polo">
+                <h3>Camisa Polo</h3>
+                <p>R$ 89,99</p>
+                <button onclick="adicionarAoCarrinho('Camisa Polo', 89.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Camiseta Estampada" data-preco="69.99">
+                <img src="camisaestampada.jpeg" alt="Camiseta Estampada">
+                <h3>Camiseta Estampada</h3>
+                <p>R$ 69,99</p>
+                <button onclick="adicionarAoCarrinho('Camiseta Estampada', 69.99)">Adicionar ao carrinho</button>
+            </div>
+        </section>
+
+        <section id="calcas">
+            <h2>Calças</h2>
+            <div class="produto" data-nome="Calça Jeans" data-preco="129.99">
+                <img src="calcajeans.webp" alt="Calça Jeans">
+                <h3>Calça Jeans</h3>
+                <p>R$ 129,99</p>
+                <button onclick="adicionarAoCarrinho('Calça Jeans', 129.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Calça de Moletom" data-preco="99.99">
+                <img src="calcamoleton.jpeg" alt="Calça de Moletom">
+                <h3>Calça de Moletom</h3>
+                <p>R$ 99,99</p>
+                <button onclick="adicionarAoCarrinho('Calça de Moletom', 99.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Calça Cargo" data-preco="149.99">
+                <img src="calcacargo.webp" alt="Calça Cargo">
+                <h3>Calça Cargo</h3>
+                <p>R$ 149,99</p>
+                <button onclick="adicionarAoCarrinho('Calça Cargo', 149.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Calça de Sarja" data-preco="119.99">
+                <img src="calcasarja.jpg" alt="Calça de Sarja">
+                <h3>Calça de Sarja</h3>
+                <p>R$ 119,99</p>
+                <button onclick="adicionarAoCarrinho('Calça de Sarja', 119.99)">Adicionar ao carrinho</button>
+            </div>
+        </section>
+
+        <section id="shorts">
+            <h2>Shorts</h2>
+            <div class="produto" data-nome="Short de Praia" data-preco="59.99">
+                <img src="shortpraia.jpeg" alt="Short de Praia">
+                <h3>Short de Praia</h3>
+                <p>R$ 59,99</p>
+                <button onclick="adicionarAoCarrinho('Short de Praia', 59.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Short Jeans" data-preco="79.99">
+                <img src="shortjeans.jpeg" alt="Short Jeans">
+                <h3>Short Jeans</h3>
+                <p>R$ 79,99</p>
+                <button onclick="adicionarAoCarrinho('Short Jeans', 79.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Short Bermuda Masculino" data-preco="89.99">
+                <img src="shortjeansbermuda.jpg" alt="Short Bermuda Masculino">
+                <h3>Short Bermuda Masculino</h3>
+                <p>R$ 89,99</p>
+                <button onclick="adicionarAoCarrinho('Short Bermuda Masculino', 89.99)">Adicionar ao carrinho</button>
+            </div>
+            <div class="produto" data-nome="Short Feminino de Algodão" data-preco="69.99">
+                <img src="shortalgodao.jpeg" alt="Short Feminino de Algodão">
+                <h3>Short Feminino de Algodão</h3>
+                <p>R$ 69,99</p>
+                <button onclick="adicionarAoCarrinho('Short Feminino de Algodão', 69.99)">Adicionar ao carrinho</button>
+            </div>
+        </section>
+
+        <section id="carrinho">
+            <h2>Carrinho</h2>
+            <div id="lista-carrinho">
+                <p>O carrinho está vazio.</p>
+            </div>
+            <div class="total-carrinho" id="total-carrinho">Total: R$ 0,00</div>
+            <button id="finalizar-compra" style="display:none;" onclick="finalizarCompra()">Finalizar Compra</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>GoldStyle &copy; 2024</p>
+    </footer>
+</body>
+</html>
