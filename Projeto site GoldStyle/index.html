@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoldStyle - Loja de Calçados, Camisas, Calças e Shorts</title>
     <style>
-        /* Estilos CSS embutidos com detalhes dourados */
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -16,10 +16,10 @@
 
         header {
             background-color: #333;
-            color: #ffd700; /* Dourado */
+            color: #ffd700;
             padding: 15px;
             text-align: center;
-            border-bottom: 2px solid #ffd700; /* Linha dourada */
+            border-bottom: 2px solid #ffd700;
         }
 
         nav ul {
@@ -34,7 +34,7 @@
         }
 
         nav a {
-            color: #ffd700; /* Dourado */
+            color: #ffd700;
             text-decoration: none;
             font-size: 18px;
         }
@@ -51,12 +51,12 @@
             display: inline-block;
             margin: 15px;
             padding: 10px;
-            border: 2px solid #ffd700; /* Borda dourada */
+            border: 2px solid #ffd700; 
             background-color: #fff;
             text-align: center;
             border-radius: 8px;
             width: 200px;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Sombra dourada */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); 
         }
 
         .produto img {
@@ -68,8 +68,8 @@
 
         button {
             background-color: #333;
-            color: #ffd700; /* Dourado */
-            border: 2px solid #ffd700; /* Borda dourada */
+            color: #ffd700; 
+            border: 2px solid #ffd700; 
             padding: 10px;
             cursor: pointer;
             border-radius: 5px;
@@ -78,7 +78,7 @@
         }
 
         button:hover {
-            background-color: #ffd700; /* Dourado */
+            background-color: #ffd700;
             color: #333;
         }
 
@@ -86,8 +86,8 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
-            border: 2px solid #ffd700; /* Borda dourada */
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Sombra dourada */
+            border: 2px solid #ffd700; 
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             margin-top: 20px;
         }
 
@@ -99,9 +99,9 @@
         footer {
             text-align: center;
             background-color: #333;
-            color: #ffd700; /* Dourado */
+            color: #ffd700; 
             padding: 10px;
-            border-top: 2px solid #ffd700; /* Linha dourada */
+            border-top: 2px solid #ffd700;
         }
 
         .total-carrinho {
@@ -119,8 +119,8 @@
         }
 
         function removerDoCarrinho(index) {
-            carrinho.splice(index, 1); // Remove o item no índice especificado
-            atualizarCarrinho(); // Atualiza a lista do carrinho após a remoção
+            carrinho.splice(index, 1); 
+            atualizarCarrinho(); 
         }
 
         function calcularTotal() {
@@ -129,7 +129,7 @@
 
         function atualizarCarrinho() {
             const listaCarrinho = document.getElementById('lista-carrinho');
-            listaCarrinho.innerHTML = ''; // Limpa a lista do carrinho antes de atualizá-la
+            listaCarrinho.innerHTML = ''; 
 
             if (carrinho.length === 0) {
                 listaCarrinho.innerHTML = '<p>O carrinho está vazio.</p>';
@@ -138,22 +138,22 @@
                     const itemElemento = document.createElement('p');
                     itemElemento.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
                     
-                    // Criando o botão de remoção para cada item
+                    
                     const botaoRemover = document.createElement('button');
                     botaoRemover.textContent = 'Remover';
-                    botaoRemover.style.backgroundColor = '#ff4c4c'; // Cor de fundo vermelho para remover
+                    botaoRemover.style.backgroundColor = '#ff4c4c'; 
                     botaoRemover.style.color = '#fff';
                     botaoRemover.style.marginLeft = '10px';
                     botaoRemover.onclick = function() {
-                        removerDoCarrinho(index); // Remove o item clicado
+                        removerDoCarrinho(index);
                     };
 
-                    itemElemento.appendChild(botaoRemover); // Adiciona o botão de remoção ao item
-                    listaCarrinho.appendChild(itemElemento); // Adiciona o item à lista
+                    itemElemento.appendChild(botaoRemover); 
+                    listaCarrinho.appendChild(itemElemento);
                 });
             }
 
-            // Atualiza o valor total do carrinho
+            
             const totalCarrinho = document.getElementById('total-carrinho');
             totalCarrinho.textContent = `Total: R$ ${calcularTotal()}`;
 
@@ -168,8 +168,8 @@
 
         function finalizarCompra() {
             alert('Compra finalizada com sucesso!');
-            carrinho = []; // Limpa o carrinho após a compra
-            atualizarCarrinho(); // Atualiza a visualização do carrinho
+            carrinho = []; 
+            atualizarCarrinho();
         }
     </script>
 </head>
